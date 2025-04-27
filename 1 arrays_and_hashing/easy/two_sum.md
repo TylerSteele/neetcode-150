@@ -31,3 +31,18 @@ I did watch [this video](https://www.youtube.com/watch?v=aHZW7TuY_yo) after watc
 In this example, I didn't think to use the hash map and that wasn't intuitive to me whatsoever. But next time it probably would be! The hash map solution is so elegant.
 
 I also want to start recording my thought process before solving the problem so I can reflect on mental traps I fall into / things I missed.
+
+## 4/27/2025
+
+Here I am again. While I did remember to use a hash map, I really struggled with what should be stored there. I eventually figured out how to do it after looking at the hints, but I was working my brain getting there. Maybe next time I'll remember the {[value]: [index]} structure :) Either way, this is a huge improvement over my last solution.
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        index_lookup = {}
+        for index, num in enumerate(nums):
+            if ((difference := target - num) in index_lookup):
+                return [index_lookup[difference], index]
+            else:
+                index_lookup[num] = index
+```
