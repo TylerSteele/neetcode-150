@@ -33,3 +33,34 @@ class Solution:
 Looking good I think? The optimization of combining skip_start and skip_end checks into one condition feels a bit extra, but it prevents redundant loops so I think it's fine. I believe this is O(n) time and O(1).
 
 Okay, in the video he says using the built-in `isalphanum` function is 'cheating'. I mean... I guessss. Let's see if I remember that when I come back to this. He also uses nested while loops to continue moving the pointers. I don't think that's more efficient in practice, but I don't hate it.
+
+## 4/28/2025
+
+Now I know this is a two pointer problem, I think I can get this on the first try. Create a pointer to the beginning and the end of the list. Skip special characters and ensure the beginning and end are equal (when uppercased). If not, return False. If you can make it through the whole string, return True.
+
+```python
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        start = 0
+        end = len(s) - 1
+        while end > start:
+            if end <= 0 and start < len(s) -1:
+                break
+            while start_isnt_alnum := not s[start].isalnum():
+                if start < len(s) - 1:
+                    start += 1
+                else:
+                    break
+            while end_isnt_alnum := not s[end].isalnum():
+                if end > 0:
+                    end -= 1
+                else:
+                    break
+            if not start_isnt_alnum and not end_isnt_alnum and s[end].upper() != s[start].upper():
+                return False
+            end -= 1
+            start += 1
+        return True
+```
+
+This took me a little while to implement because I kept encountering index out of bounds errors. I can almost certainly improve the boundary checking logic. I tried to use while loops to adjust for not alphanum characters, like they did in the solution, but it just made things a lot messier for me. I like my first solution better in terms of readability.
