@@ -26,3 +26,28 @@ class Solution:
 ```
 
 I managed to complete on my first try (not counting syntax / silly mistakes). And I got O(n) time and O(1) space complexity. Actually, I guess it's worst case scenario O(n) space complexity.
+
+## 5/2/2025
+
+Okay, this is the stack one. I don't think I'll have any problems?
+
+I got tripped up on some careless mistakes. And then I forgot to return False if the stack still had characters in it. But besides that, pretty smooth.
+
+```python
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        pairs = {'(': ')', '[': ']', '{': '}'}
+        for character in s:
+            if character in pairs:
+                stack.append(character)
+            elif character in pairs.values():
+                if stack and pairs[stack[-1]] == character:
+                    stack.pop()
+                else:
+                    return False
+
+        return not stack
+```
+
+Oh I didn't realize that the only valid characters were the bracket characters. Mine should work on any string that may contain them, so that's nice I guess. Should probably read it next time!
